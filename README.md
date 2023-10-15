@@ -1,3 +1,10 @@
+# Description of the project
+This is similar to the @-mentions in X/Twitter. The user can type any text in
+the input element but when user types @ then a select box should appear from which
+they can select an option and it should be displayed in input element. For example Hi
+@Luke Skywalker may the force be with you.. An onChange handler should be
+triggered with the input and the options selected, in a format of your choice.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

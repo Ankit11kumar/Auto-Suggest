@@ -1,15 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, ChangeEvent } from "react";
 import data from "./data.json";
-import "./App.css"; // Assuming you save the CSS in a separate file
+import "./App.css";
+
+interface Mention {
+  id: number;
+  name: string;
+}
 
 function MentionComponent() {
   // State for the input text
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState<string>("");
   // State to control visibility of the mentions list
   const [showMentions, setShowMentions] = useState(false);
 
   // Function to handle changes in the input field
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const text = e.target.value;
     setInput(text);
 
@@ -22,13 +27,13 @@ function MentionComponent() {
   };
 
   // Function to extract the text following the '@' symbol
-  const getMentionText = () => {
+  const getMentionText = (): string => {
     const atIndex = input.lastIndexOf("@");
     return input.slice(atIndex + 1).toLowerCase();
   };
 
   // Function to handle clicks on mention items
-  const handleMentionClick = (mention) => {
+  const handleMentionClick = (mention: string) => {
     const mentionText = `@${mention} `;
     const currentInput = input;
     const atIndex = currentInput.lastIndexOf("@");
@@ -53,10 +58,10 @@ function MentionComponent() {
       {showMentions && (
         <ul className="mention-list">
           {data
-            .filter((mention) =>
+            .filter((mention: Mention) =>
               mention.name.toLowerCase().includes(getMentionText())
             )
-            .map((mention) => (
+            .map((mention: Mention) => (
               <li
                 key={mention.id}
                 onClick={() => handleMentionClick(mention.name)}
